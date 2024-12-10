@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        stapel: ['var(--font-stapel)'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

@@ -16,6 +16,12 @@ body {
   background: rgb(var(--background-start-rgb));
 }
 
+@layer base {
+  .font-stapel {
+    font-family: var(--font-stapel);
+  }
+}
+
 iframe {
   border: none;
 }

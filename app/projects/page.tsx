@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ProjectCard } from '@/components/ProjectCard'
+import { ProjectCircle } from '@/components/ProjectCircle'
 import { NavigationIndicator } from '@/components/NavigationIndicator'
 import { Clock } from '@/components/Clock'
 
@@ -21,101 +21,79 @@ const projects = [
 export default function ProjectsPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const totalPages = Math.ceil(projects.length / 4)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const projectsPerPage = 4
+  const startIndex = (currentPage - 1) * projectsPerPage
 
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (containerRef.current) {
-        e.preventDefault()
-        containerRef.current.scrollTop += e.deltaY
-      }
-    }
+  const handlePrevious = () => {
+    setCurrentPage(prev => Math.max(prev - 1, 1))
+  }
 
-    const currentContainer = containerRef.current
-    if (currentContainer) {
-      currentContainer.addEventListener('wheel', handleWheel, { passive: false })
-    }
-
-    return () => {
-      if (currentContainer) {
-        currentContainer.removeEventListener('wheel', handleWheel)
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    const container = containerRef.current
-    if (container) {
-      const scrollHeight = container.scrollHeight
-      const clientHeight = container.clientHeight
-      const maxScrollTop = scrollHeight - clientHeight
-      const scrollPerPage = maxScrollTop / (totalPages - 1)
-      container.scrollTop = (currentPage - 1) * scrollPerPage
-    }
-  }, [currentPage, totalPages])
+  const handleNext = () => {
+    setCurrentPage(prev => Math.min(prev + 1, totalPages))
+  }
 
   return (
-    <div className="min-h-screen w-full overflow-hidden bg-gradient-to-br from-pink-50 to-pink-100">
+    <div className="min-h-screen w-full overflow-hidden relative">
+      {/* Spline Background */}
+      <div className="fixed inset-0 z-0">
+        <iframe src='https://my.spline.design/abstractgradientbackground-011bda7e03e77cf26d36ff66050f0278/' frameBorder='0' width='100%' height='100%'></iframe>
+      </div>
+
       {/* Left Side Content */}
       <div className="fixed left-8 flex flex-col justify-between h-screen py-8 z-10">
         <div className="flex items-center space-x-4 text-black">
           <span className="font-bold text-xl">RY</span>
           <Clock />
         </div>
-        <div className="text-xl font-light text-black">
+        <div className="text-xl font-light text-black font-stapel">
           Featured Projects <span className="text-sm">({projects.length})</span>
         </div>
-        <NavigationIndicator currentPage={currentPage} totalPages={totalPages} />
+        <NavigationIndicator 
+          currentPage={currentPage} 
+          totalPages={totalPages}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+        />
       </div>
 
       {/* Right Side Content */}
       <div className="fixed right-8 flex flex-col justify-between h-screen py-8 text-right z-10">
-        <div className="space-x-4 text-black">
+        <div className="space-x-4 text-black font-stapel">
           <Link href="/about" className="hover:opacity-70 transition-opacity">About Me</Link>
           <span>/</span>
           <Link href="/contact" className="hover:opacity-70 transition-opacity">Contact</Link>
         </div>
-        <div className="text-xl font-light text-black">
+        <div className="text-xl font-light text-black font-stapel">
           2022 <span className="inline-block transform rotate-45 mx-1">/</span> 2024
         </div>
-        <div className="max-w-[200px] text-sm text-black">
+        <div className="max-w-[200px] text-sm text-black font-stapel">
           A Featured collection of work over the last 2 Years
         </div>
       </div>
 
       {/* Projects Grid */}
-      <main 
-        ref={containerRef}
-        className="h-screen overflow-y-scroll snap-y snap-mandatory hide-scrollbar"
-      >
-        <div className="h-screen flex items-center justify-center snap-start">
-          <div className="grid grid-cols-2 gap-x-16 gap-y-8 px-32">
-            {projects.map((project, index) => (
-              <div key={project.name} className={index % 2 === 0 ? "col-start-1" : "col-start-2"}>
-                <ProjectCard {...project} index={index} />
-              </div>
-            ))}
-          </div>
+      <main className="relative z-10 min-h-screen flex items-center justify-center">
+        <div className="grid grid-cols-2 gap-x-24 gap-y-16">
+          {projects.slice(startIndex, startIndex + projectsPerPage).map((project, index) => (
+            <motion.div 
+              key={index}
+              className={`
+                ${index % 2 === 0 ? '-mt-32' : 'mt-32'}
+                ${index % 2 === 0 ? 'justify-self-end' : 'justify-self-start'}
+              `}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <ProjectCircle
+                {...project}
+                number={startIndex + index + 1}
+                index={index}
+              />
+            </motion.div>
+          ))}
         </div>
       </main>
-
-      {/* Navigation Controls */}
-      <div className="fixed inset-x-0 bottom-8 flex justify-center space-x-4 z-10">
-        <button
-          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className="p-2 hover:opacity-70 disabled:opacity-30 text-black"
-        >
-          ←
-        </button>
-        <button
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="p-2 hover:opacity-70 disabled:opacity-30 text-black"
-        >
-          →
-        </button>
-      </div>
     </div>
   )
 }
