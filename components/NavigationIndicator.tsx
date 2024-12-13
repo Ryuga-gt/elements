@@ -3,28 +3,24 @@
 import { motion } from 'framer-motion'
 
 interface NavigationIndicatorProps {
-  currentPage: number
-  totalPages: number
-  onPrevious: () => void
-  onNext: () => void
+  lowestVisibleProject: number
+  highestVisibleProject: number
+  totalProjects: number
 }
 
-export function NavigationIndicator({ currentPage, totalPages, onPrevious, onNext }: NavigationIndicatorProps) {
+export default function NavigationIndicator({ lowestVisibleProject, highestVisibleProject, totalProjects }: NavigationIndicatorProps) {
   return (
-    <div className="relative w-[200px] h-[200px]">
-      {/* Main circle */}
-      <div className="absolute inset-0 rounded-full border border-black/20 bg-white/50 backdrop-blur-sm">
-        {/* Top text */}
+    <div className="relative w-[220px] h-[220px]">
+      <div className="absolute inset-0 rounded-full border-2 border-black/40 bg-transparent">
         <div className="absolute top-8 left-0 right-0 text-center">
           <span className="text-sm font-stapel text-black/70">PROJECTS</span>
         </div>
         
-        {/* Center numbers and line */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative w-24 h-24">
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-4xl font-stapel mr-8">{currentPage}</span>
-              <span className="text-4xl font-stapel ml-8">{totalPages}</span>
+              <span className="text-5xl font-stapel mr-8 text-black/80">{lowestVisibleProject}</span>
+              <span className="text-5xl font-stapel ml-8 text-black/80">{highestVisibleProject}</span>
             </div>
             <motion.div 
               className="absolute inset-0"
@@ -37,24 +33,9 @@ export function NavigationIndicator({ currentPage, totalPages, onPrevious, onNex
           </div>
         </div>
 
-        {/* Bottom text */}
         <div className="absolute bottom-8 left-0 right-0 text-center">
           <span className="text-sm font-stapel text-black/70">NAVIGATION</span>
         </div>
-
-        {/* Navigation arrows */}
-        <button 
-          onClick={onPrevious}
-          className="absolute left-12 top-1/2 -translate-y-1/2 text-black/70 hover:text-black transition-colors"
-        >
-          ←
-        </button>
-        <button 
-          onClick={onNext}
-          className="absolute right-12 top-1/2 -translate-y-1/2 text-black/70 hover:text-black transition-colors"
-        >
-          →
-        </button>
       </div>
     </div>
   )

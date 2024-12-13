@@ -1,55 +1,38 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 
-export function AnimatedBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+export default function Clock() {
+  const [time, setTime] = useState('')
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    let gradientOffset = 0
-    let animationFrameId: number
-
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+    const updateTime = () => {
+      const now = new Date()
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'IST'
+      })
+      setTime(timeString)
     }
 
-    const animate = () => {
-      if (!ctx) return
+    updateTime()
+    const interval = setInterval(updateTime, 1000)
 
-      gradientOffset += 0.001
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
-      
-      gradient.addColorStop(0, `hsl(${(gradientOffset * 360) % 360}, 100%, 97%)`)
-      gradient.addColorStop(1, `hsl(${((gradientOffset + 0.2) * 360) % 360}, 100%, 97%)`)
-      
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      animationFrameId = requestAnimationFrame(animate)
-    }
-
-    window.addEventListener('resize', resize)
-    resize()
-    animate()
-
-    return () => {
-      window.removeEventListener('resize', resize)
-      cancelAnimationFrame(animationFrameId)
-    }
+    return () => clearInterval(interval)
   }, [])
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 -z-10"
-    />
+    <div className="flex items-center space-x-2">
+      <Link href="/" className="font-bold text-xl text-black hover:underline">
+        R/Y
+      </Link>
+      <span className="font-light text-black">{time} IST</span>
+    </div>
   )
 }
 

@@ -33,5 +33,4 @@ export function GridBackground() {
       </div>
     )
   }
-  
-  
+
