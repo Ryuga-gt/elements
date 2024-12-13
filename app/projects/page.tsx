@@ -7,14 +7,14 @@ import NavigationIndicator from '@/components/NavigationIndicator'
 import Clock from '@/components/Clock'
 
 const projects = [
-  { name: "Airbag Studio", year: 2024, image: "/images/art.svg" },
-  { name: "Things Agency", year: 2024, image: "/images/toon.png" },
-  { name: "CME Stem", year: 2024, image: "/images/noise_125.png" },
+  { name: "Airbag Studio", year: 2024, image: "/images/oo-enhanced.png" },
+  { name: "Things Agency", year: 2024, image: "/images/project.jpg" },
+  { name: "CME Stem", year: 2024, image: "/images/blog_hero-2.png" },
   { name: "Unisve Crafts", year: 2023, image: "/images/final_edit.jpg" },
   { name: "Abbracci", year: 2023, image: "/images/5-enhanced.png" },
-  { name: "Digital Arts", year: 2023, image: "/images/project.jpg" },
+  { name: "Digital Arts", year: 2023, image: "/images/toon.png" },
   { name: "Portfolio 2020", year: 2022, image: "/images/blog_hero.png" },
-  { name: "Design System", year: 2022, image: "/images/oo-enhanced.png" },
+  { name: "Design System", year: 2022, image: "/images/noise_125.png" },
 ]
 
 export default function ProjectsPage() {
@@ -57,21 +57,20 @@ export default function ProjectsPage() {
           2022 <span className="inline-block transform rotate-45 mx-1">/</span> 2024
         </div>
         <div className="flex flex-col items-end space-y-2 mb-16">
-          <div className="max-w-[200px] text-sm text-black font-stapel text-right">
-            A Featured
+          <div className="max-w-[200px] text-xl text-black font-stapel text-right">
+          Selected Highlights
           </div>
-          <div className="max-w-[200px] text-sm text-black font-stapel text-right">
-            collection of work
+          <div className="max-w-[200px] text-lg text-black font-stapel text-right">
+          The Latest and Greatest
           </div>
-          <div className="max-w-[200px] text-sm text-black font-stapel text-right">
-            over the last 2 Years
+          <div className="max-w-[200px] text-lg text-black font-stapel text-right">
+          From the Past Two Years
           </div>
         </div>
       </div>
 
-
       {/* Projects Grid */}
-      <main className="relative z-10 min-h-screen flex items-center justify-center">
+      <main className="relative z-10 min-h-screen flex items-center justify-center py-20">
         <div className="w-full max-w-7xl">
           <ScrollableProjectList 
             projects={projects} 
