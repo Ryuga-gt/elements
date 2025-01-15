@@ -8,7 +8,7 @@ interface NavigationIndicatorProps {
   totalProjects: number
 }
 
-export default function NavigationIndicator({ lowestVisibleProject, highestVisibleProject, totalProjects }: NavigationIndicatorProps) {
+export default function NavigationIndicator({ lowestVisibleProject, highestVisibleProject }: NavigationIndicatorProps) {
   return (
     <div className="relative w-[220px] h-[220px]">
       <div className="absolute inset-0 rounded-full border-2 border-black/40 bg-transparent">
