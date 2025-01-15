@@ -11,52 +11,52 @@ const timelineEvents = [
   {
     year: 2000,
     title: "The Dawn",
-    date: "5th February 2000, 4:30 PM",
+    // date: "5th February 2000, 4:30 PM",
     location: "Chandigarh",
-    story: "I was born on a crisp February evening in Chandigarh, a city known for its blend of modernity and serenity. Nestled at the foothills of the Shivalik range, it was the perfect place to begin my journey. Little did I know, this city’s balance of order and vibrancy would shape my own approach to life and learning.",
+    // story: "I was born on a crisp February evening in Chandigarh, a city known for its blend of modernity and serenity. Nestled at the foothills of the Shivalik range, it was the perfect place to begin my journey. Little did I know, this city’s balance of order and vibrancy would shape my own approach to life and learning.",
     image: "/images/1.jpg"
   },
   {
     year: 2006,
     title: "Roots of Learning",
     location: "Agra",
-    story: `My early schooling years began in Agra, where I first learned to read, write, and explore the world through books and stories. The city's rich heritage, with the Taj Mahal standing as a testament to timeless beauty, always inspired me. Even as a child, I felt the quiet pull of curiosity to understand the "why" and "how" behind everything.`,
+    // story: `My early schooling years began in Agra, where I first learned to read, write, and explore the world through books and stories. The city's rich heritage, with the Taj Mahal standing as a testament to timeless beauty, always inspired me. Even as a child, I felt the quiet pull of curiosity to understand the "why" and "how" behind everything.`,
     image: "/images/TAJ_enhanced.jpg"
   },
   {
     year: 2008,
     title: "Blossoms of Curiosity",
     location: "Sulur",
-    story: "Moving to Sulur was a turning point. Nestled in the calm of southern India, it gave me the space to observe, question, and grow. My teachers encouraged me to ask questions, and I began exploring the world with a deeper sense of wonder. It was here that I started to develop the critical thinking skills that would later become a cornerstone of my personality.",
+    // story: "Moving to Sulur was a turning point. Nestled in the calm of southern India, it gave me the space to observe, question, and grow. My teachers encouraged me to ask questions, and I began exploring the world with a deeper sense of wonder. It was here that I started to develop the critical thinking skills that would later become a cornerstone of my personality.",
     image: "/images/art.svg"
   },
   {
     year: 2010,
     title: "The Urban Explorer",
     location: "New Delhi",
-    story: "New Delhi was a completely different world—a fast-paced, dynamic city that exposed me to diverse cultures and ideas. My time here taught me adaptability, and I began to understand the importance of collaboration and connection. Whether it was navigating the crowded streets or excelling in school, I learned how to thrive in a bustling environment.",
+    // story: "New Delhi was a completely different world—a fast-paced, dynamic city that exposed me to diverse cultures and ideas. My time here taught me adaptability, and I began to understand the importance of collaboration and connection. Whether it was navigating the crowded streets or excelling in school, I learned how to thrive in a bustling environment.",
     image: "/images/toon.png"
   },
   {
     year: 2015,
     title: "Fields of Glory",
     location: "Noida",
-    story: "The football field became your battleground, where discipline and teamwork shaped you. You stood tall, representing not just yourself but a team, a region, and the dream of making it to the national stage.",
+    // story: "The football field became your battleground, where discipline and teamwork shaped you. You stood tall, representing not just yourself but a team, a region, and the dream of making it to the national stage.",
     image: "/images/2.jpg"
   },
   {
     year: 2018,
     title: "Forge of the Future",
     location: "New Delhi",
-    story: "College was the forge where I shaped my ambitions and broadened my horizons. The late-night coding marathons, lively debates, and group projects taught me the value of persistence and collaboration. It was a time of experimentation—building small projects, failing fast, and learning faster. These years built the foundation of my technical expertise and fueled my drive to create meaningful solutions.",
+    // story: "College was the forge where I shaped my ambitions and broadened my horizons. The late-night coding marathons, lively debates, and group projects taught me the value of persistence and collaboration. It was a time of experimentation—building small projects, failing fast, and learning faster. These years built the foundation of my technical expertise and fueled my drive to create meaningful solutions.",
     image: "/images/contact_bg.png"
   },
   {
     year: 2024,
     title: "The Time that is NOW",
     location: "On The MOVE",
-    story: "The last two years have been a whirlwind of growth and preparation. I immersed myself in learning cutting-edge technologies like deep learning, machine learning, and the MERN stack, tackling challenging projects that tested my skills and strengthened my resolve. Staying updated with the latest trends, I made it a priority to refine my problem-solving abilities and explore new ideas. Now, I stand ready—eager to take my skills to a larger stage. This is the moment I’ve been preparing for: to contribute meaningfully, tackle big challenges, and create solutions that leave a lasting impact. The journey so far has been incredible, but I know the best is yet to come.",
-    image: "/images/edit.jpeg"
+    // story: "The last two years have been a whirlwind of growth and preparation. I immersed myself in learning cutting-edge technologies like deep learning, machine learning, and the MERN stack, tackling challenging projects that tested my skills and strengthened my resolve. Staying updated with the latest trends, I made it a priority to refine my problem-solving abilities and explore new ideas. Now, I stand ready—eager to take my skills to a larger stage. This is the moment I’ve been preparing for: to contribute meaningfully, tackle big challenges, and create solutions that leave a lasting impact. The journey so far has been incredible, but I know the best is yet to come.",
+    // image: "/images/edit.jpeg"
   },
 ]
 
@@ -132,8 +132,8 @@ export default function AboutPage() {
             className="rounded-full"
           />
         </Link>
-        <div className="absolute bottom-8 right-8 z-20 flex items-center text-white">
-          <span className="mr-2">Scroll</span>
+        <div className="absolute bottom-16 right-8 z-20 flex items-center text-white">
+          <span className="mr-2">Right Arrow</span>
           <ChevronRight size={24} />
         </div>
         <GridBackground />
